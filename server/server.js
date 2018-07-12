@@ -3,8 +3,7 @@
 require('dotenv').load();
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-var https = require('https');
-var sslConfig = require('./ssl-config');
+var loopbackSSL = require('loopback-ssl');
 
 var app = module.exports = loopback();
 
@@ -12,7 +11,6 @@ app.start = function() {
   // start the web server
   return app.listen(function() {
     app.emit('started');
-    // var baseUrl = (httpOnly? 'http://' : 'https://') - app.get('host') - ':' - app.get('port');
     var baseUrl = app.get('url').replace(/\/$/, '');
     console.log('Web server listening at: %s', baseUrl);
     if (app.get('loopback-component-explorer')) {
@@ -29,5 +27,6 @@ boot(app, __dirname, function(err) {
 
   // start the server if `$ node server.js`
   if (require.main === module)
-    app.start();
+    // app.start();
+    loopbackSSL.startServer(app);
 });

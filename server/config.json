@@ -2,6 +2,9 @@
   "restApiRoot": "/verso/api",
   "host": "0.0.0.0",
   "port": 3001,
+  "swagger": {
+    "protocol": "https"
+  },
   "remoting": {
     "context": false,
     "rest": {
@@ -18,5 +21,14 @@
       "limit": "500kb"
     },
     "cors": false
+  },
+  "httpMode": false,
+  "certConfig": {
+    "path": "/certificate/path/",
+    "key": "privkey.pem",
+    "cert": "fullchain.pem",
+    "ca": [],
+    "requestCert": false,
+    "rejectUnauthorized": false
   }
 }
